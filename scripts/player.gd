@@ -35,6 +35,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_detection_area_entered(area: Area2D) -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(animated_sprite, "modulate", Color(255, 0, 0, 0.5), 0.2)
+	tween.tween_property(animated_sprite, "modulate", Color(255, 255, 255, 0.5), 0.2)
+	tween.tween_property(animated_sprite, "modulate", Color(1, 1, 1, 1), 0.1)
+	
 	if health == 0:
 		print("player dieded")
 	else:
