@@ -26,10 +26,16 @@ func player_hit(enemy: Area2D, is_enemy_func: bool):
 
 		position.x = 305
 		position.y = 764
+		
 		animated_sprite.play("straight")
+		hit_allow_timer.start(1)
+		var tween = get_tree().create_tween()
+		tween.tween_property(animated_sprite, "modulate", Color(255, 0, 0, 0.5), 0.4)
+		tween.tween_property(animated_sprite, "modulate", Color(255, 255, 255, 0.5), 0.4)
+		tween.tween_property(animated_sprite, "modulate", Color(1, 1, 1, 1), 0.2)
+		
 		moving = true
 		health = 3
-		hit_allow_timer.start(1)
 		return
 	
 	hit_allow_timer.start(1)
@@ -43,8 +49,6 @@ func player_hit(enemy: Area2D, is_enemy_func: bool):
 	tween.tween_property(animated_sprite, "modulate", Color(1, 1, 1, 1), 0.2)
 
 func _physics_process(delta: float) -> void:
-	enemies = get_tree().get_nodes_in_group("enemies")
-	
 	if moving:
 		var viewport_size = get_viewport().size
 		
@@ -75,8 +79,10 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 func _on_hit_allow_timeout() -> void:
+	enemies = get_tree().get_nodes_in_group("enemies")
+	
 	hit_allow = true
 	for enemy in enemies:
-		if player_detection.overlaps_area(enemy) and enemy.hit_allow:
+		if is_instance_valid(enemy) and enemy.hit_allow and player_detection.overlaps_area(enemy):
 			hit_allow = false
 			player_hit(enemy, false)

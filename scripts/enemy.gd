@@ -8,17 +8,17 @@ var hit_allow = true
 var speed = 130
 var health = 1
 
-func enemy_hit(player: CharacterBody2D, is_player_func: bool):			
+func enemy_hit(player: CharacterBody2D, is_player_func: bool):
 	health -= 1
 	
 	if health == 0:
 		moving = false
+		hit_allow = false
 		
 		if not is_player_func:
 			player.player_hit(self, true)
 		
 		animated_sprite.play("death")
-		hit_allow = false
 		await animated_sprite.animation_finished
 		self.queue_free()
 		return
