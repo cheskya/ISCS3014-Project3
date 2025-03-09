@@ -28,25 +28,25 @@ func player_hit(enemy: Area2D, is_enemy_func: bool):
 		position.y = 764
 		
 		animated_sprite.play("straight")
-		hit_allow_timer.start(1)
+		hit_allow_timer.start(0.7)
 		var tween = get_tree().create_tween()
-		tween.tween_property(animated_sprite, "modulate", Color(255, 0, 0, 0.5), 0.4)
-		tween.tween_property(animated_sprite, "modulate", Color(255, 255, 255, 0.5), 0.4)
-		tween.tween_property(animated_sprite, "modulate", Color(1, 1, 1, 1), 0.2)
+		tween.tween_property(animated_sprite, "modulate", Color(255, 0, 0, 0.5), 0.3)
+		tween.tween_property(animated_sprite, "modulate", Color(255, 255, 255, 0.5), 0.3)
+		tween.tween_property(animated_sprite, "modulate", Color(1, 1, 1, 1), 0.1)
 		
 		moving = true
 		health = 3
 		return
 	
-	hit_allow_timer.start(1)
+	hit_allow_timer.start(0.7)
 	
 	if not is_enemy_func:
 		enemy.enemy_hit(self, true)
 	
 	var tween = get_tree().create_tween()
-	tween.tween_property(animated_sprite, "modulate", Color(255, 0, 0, 0.5), 0.4)
-	tween.tween_property(animated_sprite, "modulate", Color(255, 255, 255, 0.5), 0.4)
-	tween.tween_property(animated_sprite, "modulate", Color(1, 1, 1, 1), 0.2)
+	tween.tween_property(animated_sprite, "modulate", Color(255, 0, 0, 0.5), 0.3)
+	tween.tween_property(animated_sprite, "modulate", Color(255, 255, 255, 0.5), 0.3)
+	tween.tween_property(animated_sprite, "modulate", Color(1, 1, 1, 1), 0.1)
 
 func _physics_process(delta: float) -> void:
 	if moving:

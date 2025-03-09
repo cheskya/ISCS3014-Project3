@@ -6,7 +6,7 @@ var enemies = [
 
 @onready var spawn_timer = $EnemySpawnTimer
 
-var spawn_interval = 2.5
+var spawn_interval = 2.25
 
 func _ready():
 	randomize()

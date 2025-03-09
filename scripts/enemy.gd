@@ -27,9 +27,9 @@ func enemy_hit(player: CharacterBody2D, is_player_func: bool):
 		player.player_hit(self, true)
 	
 	var tween = get_tree().create_tween()
-	tween.tween_property(animated_sprite, "modulate", Color(255, 0, 0, 0.5), 0.4)
-	tween.tween_property(animated_sprite, "modulate", Color(255, 255, 255, 0.5), 0.4)
-	tween.tween_property(animated_sprite, "modulate", Color(1, 1, 1, 1), 0.2)
+	tween.tween_property(animated_sprite, "modulate", Color(255, 0, 0, 0.5), 0.3)
+	tween.tween_property(animated_sprite, "modulate", Color(255, 255, 255, 0.5), 0.3)
+	tween.tween_property(animated_sprite, "modulate", Color(1, 1, 1, 1), 0.1)
 
 func _ready() -> void:
 	add_to_group("enemies")
