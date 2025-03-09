@@ -78,7 +78,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -123,10 +123,10 @@ autoplay = "default"
 frame = 1
 frame_progress = 0.933705
 
-[node name="Detection" type="Area2D" parent="."]
+[node name="EnemyDetection" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetection"]
 position = Vector2(0, -0.5)
 shape = SubResource("CircleShape2D_qhwwn")
 
-[connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
+[connection signal="area_entered" from="EnemyDetection" to="." method="_on_detection_area_entered"]

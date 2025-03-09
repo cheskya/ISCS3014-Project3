@@ -63,7 +63,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -110,11 +110,15 @@ autoplay = "straight"
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_0xeae")
 
-[node name="Detection" type="Area2D" parent="."]
+[node name="PlayerDetection" type="Area2D" parent="."]
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_3isjv")
 
-[connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
+[node name="HitAllow" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="PlayerDetection" to="." method="_on_detection_area_entered"]
+[connection signal="timeout" from="HitAllow" to="." method="_on_hit_allow_timeout"]
