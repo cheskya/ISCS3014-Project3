@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-@export var speed = 120
+@export var speed = 110
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var move = Input.get_vector("left", "right", "up", "down")
 	if move:
 		velocity = move * speed
