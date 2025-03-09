@@ -7,8 +7,8 @@ extends CharacterBody2D
 func _physics_process(delta: float) -> void:
 	var viewport_size = get_viewport().size
 	
-	var camera_left = 30
-	var camera_right = viewport_size.x - 30
+	var camera_left = 35
+	var camera_right = viewport_size.x - 35
 	var camera_up = 60
 	var camera_down = viewport_size.y - 15
 	
