@@ -5,6 +5,19 @@ extends CharacterBody2D
 @onready var animated_sprite = $AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:
+	var viewport_size = get_viewport().size
+	
+	var camera_left = 30
+	var camera_right = viewport_size.x - 30
+	var camera_up = 60
+	var camera_down = viewport_size.y - 15
+	
+	var player_pos = position
+	player_pos.x = clamp(player_pos.x, camera_left, camera_right)
+	player_pos.y = clamp(player_pos.y, camera_up, camera_down)
+	
+	position = player_pos
+	
 	var move = Input.get_vector("left", "right", "up", "down")
 	
 	if move[0] == 0:
