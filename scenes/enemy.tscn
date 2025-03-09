@@ -1,10 +1,35 @@
-[gd_scene load_steps=12 format=3 uid="uid://colg10bc1v2r0"]
+[gd_scene load_steps=19 format=3 uid="uid://colg10bc1v2r0"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_7nxvu"]
 [ext_resource type="Texture2D" uid="uid://bpj2sn7alqdlc" path="res://assets/Enemies/Alan (16 x 16).png" id="1_qbrkr"]
+[ext_resource type="Texture2D" uid="uid://c0yngbywtgn56" path="res://assets/Effects/Explosion (16 x 16).png" id="2_rlany"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3mby"]
 radius = 6.50481
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvpv7"]
+atlas = ExtResource("2_rlany")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h24jx"]
+atlas = ExtResource("2_rlany")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0ue4"]
+atlas = ExtResource("2_rlany")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twbjs"]
+atlas = ExtResource("2_rlany")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfgnk"]
+atlas = ExtResource("2_rlany")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7stgs"]
+atlas = ExtResource("2_rlany")
+region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h3ull"]
 atlas = ExtResource("1_qbrkr")
@@ -32,6 +57,29 @@ region = Rect2(80, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b8qsa"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvpv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h24jx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0ue4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twbjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfgnk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7stgs")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_h3ull")
@@ -70,7 +118,10 @@ shape = SubResource("CircleShape2D_i3mby")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b8qsa")
+animation = &"death"
 autoplay = "default"
+frame = 1
+frame_progress = 0.933705
 
 [node name="Detection" type="Area2D" parent="."]
 
