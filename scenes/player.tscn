@@ -1,7 +1,32 @@
-[gd_scene load_steps=9 format=3 uid="uid://5enanp7wndpb"]
+[gd_scene load_steps=16 format=3 uid="uid://5enanp7wndpb"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4ww0i"]
 [ext_resource type="Texture2D" uid="uid://bueum7kdmgqm4" path="res://assets/Player ship/Player_ship (16 x 16).png" id="1_byuyw"]
+[ext_resource type="Texture2D" uid="uid://bvmdxn0f51whd" path="res://assets/Effects/Sparkle (16 x 16).png" id="2_3j5g5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5udc3"]
+atlas = ExtResource("2_3j5g5")
+region = Rect2(0, 0, 13, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tluva"]
+atlas = ExtResource("2_3j5g5")
+region = Rect2(13, 0, 13, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3wsj"]
+atlas = ExtResource("2_3j5g5")
+region = Rect2(26, 0, 13, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_coshg"]
+atlas = ExtResource("2_3j5g5")
+region = Rect2(39, 0, 13, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ssvp"]
+atlas = ExtResource("2_3j5g5")
+region = Rect2(52, 0, 13, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyk6m"]
+atlas = ExtResource("2_3j5g5")
+region = Rect2(65, 0, 13, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7mhs7"]
 atlas = ExtResource("1_byuyw")
@@ -17,6 +42,29 @@ region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n7p37"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5udc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tluva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3wsj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_coshg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ssvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yyk6m")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7mhs7")
@@ -55,7 +103,7 @@ script = ExtResource("1_4ww0i")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_n7p37")
-animation = &"straight"
+animation = &"death"
 autoplay = "straight"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
