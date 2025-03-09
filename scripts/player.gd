@@ -12,6 +12,8 @@ var health = 3
 
 var enemies = null
 
+# Modify this function to accomodate bullets
+# Note: use boolean/group checkers depending on enemy/bullet
 func player_hit(enemy: Area2D, is_enemy_func: bool):
 	health -= 1
 	
@@ -78,6 +80,8 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector2.ZERO
 		move_and_slide()
 
+# Modify this function to accomodate bullets
+# Note: use boolean/group checkers depending on enemy/bullet
 func _on_hit_allow_timeout() -> void:
 	enemies = get_tree().get_nodes_in_group("enemies")
 	

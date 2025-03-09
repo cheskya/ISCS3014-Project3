@@ -8,6 +8,8 @@ var hit_allow = true
 var speed = 130
 var health = 1
 
+# Modify this function to accomodate bullets
+# Note: use boolean/group checkers depending on player/bullet
 func enemy_hit(player: CharacterBody2D, is_player_func: bool):
 	health -= 1
 	
@@ -38,6 +40,8 @@ func _physics_process(delta: float) -> void:
 	if moving:
 		translate(Vector2.DOWN * speed * delta)
 
+# Modify this function to accomodate bullets
+# Note: use boolean/group checkers depending on player/bullet
 func _on_detection_area_entered(area: Area2D) -> void:
 	var parent = area.get_parent()
 	
