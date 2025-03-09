@@ -50,6 +50,7 @@ script = ExtResource("3_7bpvi")
 
 [node name="FreeZone" type="Area2D" parent="."]
 position = Vector2(301, 900)
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FreeZone"]
 position = Vector2(1.375, 0)

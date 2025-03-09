@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://5enanp7wndpb"]
+[gd_scene load_steps=9 format=3 uid="uid://5enanp7wndpb"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4ww0i"]
 [ext_resource type="Texture2D" uid="uid://bueum7kdmgqm4" path="res://assets/Player ship/Player_ship (16 x 16).png" id="1_byuyw"]
@@ -45,6 +45,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_0xeae"]
 radius = 6.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3isjv"]
+radius = 6.0
+
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(4, 4)
 script = ExtResource("1_4ww0i")
@@ -58,3 +61,12 @@ autoplay = "straight"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_0xeae")
+
+[node name="Detection" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_3isjv")
+
+[connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]

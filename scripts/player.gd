@@ -4,6 +4,8 @@ extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite2D
 
+var health = 3
+
 func _physics_process(delta: float) -> void:
 	var viewport_size = get_viewport().size
 	
@@ -32,3 +34,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity = Vector2.ZERO
 	move_and_slide()
+
+func _on_detection_area_entered(area: Area2D) -> void:
+	if health == 0:
+		print("player dieded")
+	else:
+		health -= 1
