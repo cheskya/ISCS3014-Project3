@@ -1,9 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://ci4ye1oupah08"]
+[gd_scene load_steps=7 format=3 uid="uid://ci4ye1oupah08"]
 
+[ext_resource type="Texture2D" uid="uid://ct46e7kxxw6oj" path="res://assets/Space_BG (2 frames) (64 x 64).png" id="1_6vhrb"]
 [ext_resource type="PackedScene" uid="uid://5enanp7wndpb" path="res://scenes/player.tscn" id="1_jnxll"]
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="3_7bpvi"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8x6u0"]
+atlas = ExtResource("1_6vhrb")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l1fh"]
+atlas = ExtResource("1_6vhrb")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w8tha"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8x6u0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l1fh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Game" type="Node2D"]
+
+[node name="Background" type="AnimatedSprite2D" parent="."]
+scale = Vector2(9.40625, 12.5469)
+sprite_frames = SubResource("SpriteFrames_w8tha")
+autoplay = "default"
+centered = false
 
 [node name="Player" parent="." instance=ExtResource("1_jnxll")]
 position = Vector2(305, 764)
