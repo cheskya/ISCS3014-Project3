@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_7nxvu"]
 [ext_resource type="Texture2D" uid="uid://bpj2sn7alqdlc" path="res://assets/Enemies/Alan (16 x 16).png" id="1_qbrkr"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dac3"]
-size = Vector2(14, 13)
+[sub_resource type="CircleShape2D" id="CircleShape2D_i3mby"]
+radius = 6.50481
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h3ull"]
 atlas = ExtResource("1_qbrkr")
@@ -62,7 +62,7 @@ script = ExtResource("1_7nxvu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_2dac3")
+shape = SubResource("CircleShape2D_i3mby")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b8qsa")
