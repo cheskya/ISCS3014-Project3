@@ -9,7 +9,7 @@ func _physics_process(delta: float) -> void:
 	
 	var camera_left = 35
 	var camera_right = viewport_size.x - 35
-	var camera_up = 60
+	var camera_up = 65
 	var camera_down = viewport_size.y - 15
 	
 	var player_pos = position
