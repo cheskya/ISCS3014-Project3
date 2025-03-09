@@ -3,10 +3,6 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4ww0i"]
 [ext_resource type="Texture2D" uid="uid://bueum7kdmgqm4" path="res://assets/Player ship/Player_ship (16 x 16).png" id="1_byuyw"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_khv4n"]
-atlas = ExtResource("1_byuyw")
-region = Rect2(16, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_7mhs7"]
 atlas = ExtResource("1_byuyw")
 region = Rect2(0, 0, 16, 16)
@@ -15,16 +11,12 @@ region = Rect2(0, 0, 16, 16)
 atlas = ExtResource("1_byuyw")
 region = Rect2(32, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_khv4n"]
+atlas = ExtResource("1_byuyw")
+region = Rect2(16, 0, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_n7p37"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_khv4n")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7mhs7")
@@ -40,6 +32,14 @@ animations = [{
 "loop": true,
 "name": &"move_right",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khv4n")
+}],
+"loop": true,
+"name": &"straight",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0xeae"]
@@ -52,8 +52,8 @@ script = ExtResource("1_4ww0i")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_n7p37")
-animation = &"idle"
-autoplay = "idle"
+animation = &"straight"
+autoplay = "straight"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
