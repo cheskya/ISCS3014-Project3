@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed = 250
 
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite = $AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:
 	var move = Input.get_vector("left", "right", "up", "down")
