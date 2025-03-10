@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://ci4ye1oupah08"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_6ue6b"]
+[ext_resource type="Texture2D" uid="uid://ct46e7kxxw6oj" path="res://assets/Space_BG (2 frames) (64 x 64).png" id="1_6vhrb"]
+[ext_resource type="PackedScene" uid="uid://5enanp7wndpb" path="res://scenes/player.tscn" id="1_jnxll"]
+[ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="3_7bpvi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8x6u0"]
+atlas = ExtResource("1_6vhrb")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l1fh"]
+atlas = ExtResource("1_6vhrb")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w8tha"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8x6u0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l1fh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7ggq"]
+size = Vector2(631.25, 52)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_6ue6b")
+
+[node name="Background" type="AnimatedSprite2D" parent="."]
+scale = Vector2(9.40625, 12.5469)
+sprite_frames = SubResource("SpriteFrames_w8tha")
+autoplay = "default"
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("1_jnxll")]
+position = Vector2(305, 764)
+
+[node name="EnemySpawner" type="Node2D" parent="."]
+position = Vector2(298, -49)
+script = ExtResource("3_7bpvi")
+
+[node name="EnemySpawnTimer" type="Timer" parent="EnemySpawner"]
+
+[node name="FreeZone" type="Area2D" parent="."]
+position = Vector2(301, 900)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FreeZone"]
+position = Vector2(1.375, 0)
+shape = SubResource("RectangleShape2D_e7ggq")
+
+[connection signal="timeout" from="EnemySpawner/EnemySpawnTimer" to="EnemySpawner" method="_on_enemy_spawn_timer_timeout"]
+[connection signal="area_entered" from="FreeZone" to="." method="_on_free_zone_area_entered"]
