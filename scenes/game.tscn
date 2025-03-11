@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ci4ye1oupah08"]
+[gd_scene load_steps=10 format=3 uid="uid://ci4ye1oupah08"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_6ue6b"]
 [ext_resource type="Texture2D" uid="uid://ct46e7kxxw6oj" path="res://assets/Space_BG (2 frames) (64 x 64).png" id="1_6vhrb"]
@@ -30,6 +30,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7ggq"]
 size = Vector2(631.25, 52)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ddhx"]
+size = Vector2(603, 78)
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_6ue6b")
 
@@ -49,13 +52,23 @@ script = ExtResource("3_7bpvi")
 
 [node name="EnemySpawnTimer" type="Timer" parent="EnemySpawner"]
 
-[node name="FreeZone" type="Area2D" parent="."]
+[node name="EnemyFreeZone" type="Area2D" parent="."]
 position = Vector2(301, 900)
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FreeZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyFreeZone"]
 position = Vector2(1.375, 0)
 shape = SubResource("RectangleShape2D_e7ggq")
 
+[node name="PlayerBulletFreeZone" type="Area2D" parent="."]
+position = Vector2(301, 900)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBulletFreeZone"]
+position = Vector2(1.5, -991)
+shape = SubResource("RectangleShape2D_0ddhx")
+
 [connection signal="timeout" from="EnemySpawner/EnemySpawnTimer" to="EnemySpawner" method="_on_enemy_spawn_timer_timeout"]
-[connection signal="area_entered" from="FreeZone" to="." method="_on_free_zone_area_entered"]
+[connection signal="area_entered" from="EnemyFreeZone" to="." method="_on_enemy_free_zone_area_entered"]
+[connection signal="area_entered" from="PlayerBulletFreeZone" to="." method="_on_player_bullet_free_zone_area_entered"]
