@@ -37,6 +37,7 @@ script = ExtResource("1_6ue6b")
 scale = Vector2(9.40625, 12.5469)
 sprite_frames = SubResource("SpriteFrames_w8tha")
 autoplay = "default"
+frame_progress = 0.498173
 centered = false
 
 [node name="Player" parent="." instance=ExtResource("1_jnxll")]

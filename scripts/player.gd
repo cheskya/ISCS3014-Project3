@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var player_bullet: PackedScene = preload("res://scenes/playerbullet.tscn")
+@export var player_bullet_scene: PackedScene = preload("res://scenes/playerbullet.tscn")
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var player_detection = $PlayerDetection
 @onready var hit_allow_timer = $HitAllow
@@ -34,7 +34,7 @@ func player_hit(enemy: Area2D, is_enemy_func: bool):
 		
 		animated_sprite.play("straight")
 		hit_allow_timer.start(0.7)
-		var tween = get_tree().create_tween()
+		var tween = get_tree().create_tween() 
 		tween.tween_property(animated_sprite, "modulate", Color(255, 0, 0, 0.5), 0.3)
 		tween.tween_property(animated_sprite, "modulate", Color(255, 255, 255, 0.5), 0.3)
 		tween.tween_property(animated_sprite, "modulate", Color(1, 1, 1, 1), 0.1)
@@ -55,7 +55,8 @@ func player_hit(enemy: Area2D, is_enemy_func: bool):
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("shoot") and shoot_allow:
-		print("shoot!")
+		var player_bullet = player_bullet_scene.instantiate()
+		get_parent().add_child(player_bullet)
 		shoot_allow = false
 		shoot_allow_timer.start()
 
