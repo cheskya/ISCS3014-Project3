@@ -120,5 +120,8 @@ shape = SubResource("CircleShape2D_3isjv")
 [node name="HitAllow" type="Timer" parent="."]
 one_shot = true
 
+[node name="ShootAllow" type="Timer" parent="."]
+
 [connection signal="area_entered" from="PlayerDetection" to="." method="_on_detection_area_entered"]
 [connection signal="timeout" from="HitAllow" to="." method="_on_hit_allow_timeout"]
+[connection signal="timeout" from="ShootAllow" to="." method="_on_shoot_allow_timeout"]
