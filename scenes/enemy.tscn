@@ -122,12 +122,17 @@ autoplay = "default"
 frame = 1
 frame_progress = 0.933705
 
-[node name="EnemyDetection" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetection"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2(0, -0.5)
 shape = SubResource("CircleShape2D_qhwwn")
 
-[connection signal="area_entered" from="EnemyDetection" to="." method="_on_detection_area_entered"]
+[node name="HitAllow" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_entered"]
+[connection signal="timeout" from="HitAllow" to="." method="_on_hit_allow_timeout"]
