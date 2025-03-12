@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var collision_area = $EnemyDetection
 
 var moving = true
 var hit_allow = true
@@ -16,6 +17,8 @@ func enemy_hit(player: CharacterBody2D, is_player_func: bool):
 	if health == 0:
 		moving = false
 		hit_allow = false
+		
+		collision_area.queue_free()
 		
 		if not is_player_func:
 			player.player_hit(self, true)

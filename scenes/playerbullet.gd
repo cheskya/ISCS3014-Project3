@@ -1,11 +1,11 @@
 extends Node2D
 
 @export var speed = 500
-@onready var animation = $AnimatedSprite2D
+@export var explosion_scale : Vector2 = Vector2(3,3)
+@onready var animation = $AnimatedSprite2D 
 var spawn_location
 var has_hit = false
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	animation.play("default")
 	add_to_group("playerbullet")
