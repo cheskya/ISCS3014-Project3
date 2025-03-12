@@ -18,7 +18,6 @@ func _physics_process(delta: float) -> void:
 		translate(Vector2.UP * speed * delta)
 
 func _on_area_entered(area: Area2D) -> void:
-	print("bullet has collided w/ enemy")
 	has_hit = true
 	self.scale = Vector2(3,3)
 	animation.play("explosion")
