@@ -98,6 +98,8 @@ radius = 6.0
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(4, 4)
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_4ww0i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -122,6 +124,16 @@ one_shot = true
 
 [node name="ShootAllow" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="Label" type="Label" parent="."]
+offset_left = -4.0
+offset_top = -21.25
+offset_right = 36.0
+offset_bottom = 1.75
+scale = Vector2(0.2, 0.2)
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="area_entered" from="PlayerDetection" to="." method="_on_detection_area_entered"]
 [connection signal="area_entered" from="PlayerDetection" to="." method="_on_player_detection_area_entered"]

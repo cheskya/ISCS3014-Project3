@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var player_detection = $PlayerDetection
 @onready var hit_allow_timer = $HitAllow
 @onready var shoot_allow_timer = $ShootAllow
+@onready var label = $Label
 
 var moving = true
 var hit_allow = true
@@ -15,14 +16,15 @@ var health = 3
 
 var enemies = null
 
+func _ready():
+	label.text = str(health)
 
-func player_hit(enemy: Area2D, is_enemy_func: bool, is_bullet_func: bool):
-	if not hit_allow:
-		return
+func player_hit(enemy: Area2D, is_enemy_func: bool):
 	
 	health -= 1
+	label.text = str(health)
 	
-	if health == 0:
+	if health <= 0:
 		moving = false
 		animated_sprite.play("death")
 		
@@ -62,6 +64,7 @@ func _process(delta: float) -> void:
 		get_parent().add_child(player_bullet)
 		shoot_allow = false
 		shoot_allow_timer.start()
+	print(hit_allow)
 
 func _physics_process(delta: float) -> void:
 	if moving:
@@ -103,22 +106,22 @@ func _on_hit_allow_timeout() -> void:
 	for enemy in enemies:
 		if is_instance_valid(enemy) and enemy.hit_allow and player_detection.overlaps_area(enemy):
 			hit_allow = false
-			player_hit(enemy, false, true)
+			player_hit(enemy, false)
 			
 	for bullet in enemy_bullets:
 		if is_instance_valid(bullet) and player_detection.overlaps_area(bullet):
 			hit_allow = false
-			player_hit(bullet, true, false) 
+			player_hit(bullet, true)
 			bullet.queue_free() 
 			return 
 
 func _on_player_detection_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemies"):
 		if hit_allow:
-			player_hit(area, false, true)
-	elif area.is_in_group("enemybullet"):
+			player_hit(area, false)
+	if area.is_in_group("enemybullet"):
 		if hit_allow:
-			player_hit(area, true, false)
+			player_hit(area, true)
 			area.queue_free()
 
 func _on_shoot_allow_timeout() -> void:
