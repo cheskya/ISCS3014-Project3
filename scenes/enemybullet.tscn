@@ -63,7 +63,7 @@ animations = [{
 }]
 
 [node name="EnemyBullet" type="Area2D"]
-collision_layer = 2
+collision_layer = 8
 script = ExtResource("1_lg01s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

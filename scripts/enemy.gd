@@ -64,7 +64,7 @@ func _on_detection_area_entered(area: Area2D) -> void:
 		if parent.hit_allow:
 			parent.hit_allow = false
 			enemy_hit(parent, false)
-	elif area.is_in_group("playerbullet"):
+	elif area.is_in_group("playerbullet"): 
 		enemy_hit(null, true)
 
 func _on_hit_allow_timeout() -> void:
