@@ -124,7 +124,6 @@ frame_progress = 0.933705
 
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2(0, -0.5)
@@ -133,6 +132,9 @@ shape = SubResource("CircleShape2D_qhwwn")
 [node name="HitAllow" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="ShootAllow" type="Timer" parent="."]
+wait_time = 2.0
 
 [connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_entered"]
 [connection signal="timeout" from="HitAllow" to="." method="_on_hit_allow_timeout"]

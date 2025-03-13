@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://bvb70ihcwinq6"]
+
+[ext_resource type="Texture2D" uid="uid://buvvir1wyvnop" path="res://assets/Projectiles/Enemy_projectile (16 x 16).png" id="1_ab0lx"]
+[ext_resource type="Script" path="res://scenes/enemybullet.gd" id="1_lg01s"]
+[ext_resource type="Texture2D" uid="uid://c0yngbywtgn56" path="res://assets/Effects/Explosion (16 x 16).png" id="3_k03jd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kfafx"]
+size = Vector2(12.375, 12.375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjp03"]
+atlas = ExtResource("1_ab0lx")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyvjt"]
+atlas = ExtResource("3_k03jd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88mlo"]
+atlas = ExtResource("3_k03jd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tej8"]
+atlas = ExtResource("3_k03jd")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gm1o"]
+atlas = ExtResource("3_k03jd")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnvte"]
+atlas = ExtResource("3_k03jd")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1hx1i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjp03")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kyvjt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88mlo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tej8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gm1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnvte")
+}],
+"loop": true,
+"name": &"explosion",
+"speed": 12.0
+}]
+
+[node name="EnemyBullet" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_lg01s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+light_mask = 2
+scale = Vector2(1.84425, 1.87163)
+shape = SubResource("RectangleShape2D_kfafx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4.76837e-07, 4.76837e-07)
+scale = Vector2(3.63494, 3.65467)
+sprite_frames = SubResource("SpriteFrames_1hx1i")
+autoplay = "default"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
