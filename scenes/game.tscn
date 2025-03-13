@@ -36,7 +36,15 @@ size = Vector2(603, 78)
 [node name="Game" type="Node2D"]
 script = ExtResource("1_6ue6b")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 300.0
+offset_bottom = 400.0
+scale = Vector2(2, 2)
+texture = ExtResource("1_6vhrb")
+stretch_mode = 1
+
 [node name="Background" type="AnimatedSprite2D" parent="."]
+visible = false
 scale = Vector2(9.40625, 12.5469)
 sprite_frames = SubResource("SpriteFrames_w8tha")
 autoplay = "default"
@@ -54,7 +62,7 @@ script = ExtResource("3_7bpvi")
 
 [node name="EnemyFreeZone" type="Area2D" parent="."]
 position = Vector2(301, 900)
-collision_mask = 2
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyFreeZone"]
 position = Vector2(1.375, 0)

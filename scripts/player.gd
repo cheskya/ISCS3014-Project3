@@ -15,9 +15,11 @@ var health = 3
 
 var enemies = null
 
-# Modify this function to accomodate bullets
-# Note: use boolean/group checkers depending on enemy/bullet
-func player_hit(enemy: Area2D, is_enemy_func: bool):
+
+func player_hit(enemy: Area2D, is_enemy_func: bool, is_bullet_func: bool):
+	if not hit_allow:
+		return
+	
 	health -= 1
 	
 	if health == 0:
@@ -43,11 +45,12 @@ func player_hit(enemy: Area2D, is_enemy_func: bool):
 		health = 3
 		return
 	
+	hit_allow = false
 	hit_allow_timer.start(0.7)
 	
 	if not is_enemy_func:
 		enemy.enemy_hit(self, true)
-	
+			
 	var tween = get_tree().create_tween()
 	tween.tween_property(animated_sprite, "modulate", Color(255, 0, 0, 0.5), 0.3)
 	tween.tween_property(animated_sprite, "modulate", Color(255, 255, 255, 0.5), 0.3)
@@ -91,17 +94,33 @@ func _physics_process(delta: float) -> void:
 		
 		move_and_slide()
 
-# Modify this function to accomodate bullets
-# Note: use boolean/group checkers depending on enemy/bullet
+
 func _on_hit_allow_timeout() -> void:
 	enemies = get_tree().get_nodes_in_group("enemies")
+	var enemy_bullets = get_tree().get_nodes_in_group("enemybullet")
 	
 	hit_allow = true
 	for enemy in enemies:
 		if is_instance_valid(enemy) and enemy.hit_allow and player_detection.overlaps_area(enemy):
 			hit_allow = false
-			player_hit(enemy, false)
+			player_hit(enemy, false, true)
+			
+	for bullet in enemy_bullets:
+		if is_instance_valid(bullet) and player_detection.overlaps_area(bullet):
+			hit_allow = false
+			player_hit(bullet, true, false) 
+			bullet.queue_free() 
+			return 
+
+func _on_player_detection_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemies"):
+		if hit_allow:
+			player_hit(area, false, true)
+	elif area.is_in_group("enemybullet"):
+		if hit_allow:
+			player_hit(area, true, false)
+			area.queue_free()
 
 func _on_shoot_allow_timeout() -> void:
 	shoot_allow = true
-	pass # Replace with function body.
+	pass 
